@@ -1,6 +1,8 @@
 function init_card(anim_states, move_states, value)
   local card = init_entity(0, 0, anim_states, 'idle', move_states, 'idle')
   card.value = value
+  card.width = 22
+  card.height = 32
 
   card.update = function(card)
     card.update_move_state(card)
@@ -8,7 +10,8 @@ function init_card(anim_states, move_states, value)
   
   card.draw = function(card)
     card.draw_anim_state(card)
-    print(card.value, 1, 1, 1)
+    rectfill(card.x, card.y, x2(card.x, card.width), y2(card.y, card.height), 6)
+    print(card.value, card.x + 1, card.y + 1, 1)
   end
 
   return card 

@@ -79,3 +79,11 @@ function init_entity(x, y, anim_states, initial_anim_state_name, move_states, in
 
   return entity
 end
+
+function x2(x1, width)
+  return x1 + width - 1
+end
+
+function y2(y1, height)
+  return y1 + height - 1
+end

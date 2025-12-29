@@ -10,10 +10,30 @@ function init_card_move_states()
 
   local card_deal_frames = {
     function (target)
-      if target.y < 50 then
-        target.y = target.y + 5
+      
+      local slot = nil
+      for s in all(row.slots) do
+        if s.card == target then
+          slot = s
+          break
+        end
+      end
+
+      if target.y < slot.y then
+        local diff = slot.y - target.y
+        if diff < 4 then
+          target.y = slot.y
+        else
+          target.y = target.y + 4
+        end
       else
-        target:set_move_state('idle')
+        local diff = slot.x - target.x
+        if diff < 4 then
+          target.x = slot.x
+          target:set_move_state('idle')
+        else
+          target.x = target.x + 4
+        end
       end
     end
   }
