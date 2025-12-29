@@ -1,0 +1,20 @@
+Deck:
+- cards [List]
+
+Row:
+- cards [List]
+- slots [List]
+
+Card:
+- x, y
+- value
+- animation states:
+- - idle
+- movement states
+- - idle
+- - deal
+
+
+
+
+
