@@ -19,27 +19,26 @@ function init_card_move_states()
         end
       end
 
+      local move_unit = 6
       if target.y < slot.y then
         local diff = slot.y - target.y
-        if diff < 4 then
+        if diff < move_unit then
           target.y = slot.y
         else
-          target.y = target.y + 4
+          target.y = target.y + move_unit
         end
       else
         local diff = slot.x - target.x
-        if diff < 4 then
+        if diff < move_unit then
           target.x = slot.x
           target:set_move_state('idle')
         else
-          target.x = target.x + 4
+          target.x = target.x + move_unit
         end
       end
     end
   }
   card_move_states['deal'] = create_state(card_deal_frames, 1, true)
-
-
 
   return card_move_states 
 end

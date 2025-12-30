@@ -2,6 +2,8 @@ function init_dealer()
   local dealer = {
     card = nil,
     deal = function(self)
+      assert(row:any_free_slots(), "Row must have free slots to deal to")
+      
       local row_cards = row:cards()
       row:clear_slots()
       

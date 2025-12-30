@@ -1,5 +1,5 @@
 function init_card(anim_states, move_states, value)
-  local card = init_entity(0, 0, anim_states, 'idle', move_states, 'idle')
+  local card = init_entity(14, -16, anim_states, 'idle', move_states, 'idle')
   card.value = value
   card.width = 22
   card.height = 32

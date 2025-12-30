@@ -40,6 +40,15 @@ function _update()
       local card = slot.card
       del(all_cards, card)
       slot.card = nil
+      local slot = row.slots[3]
+      local card = slot.card
+      del(all_cards, card)
+      slot.card = nil
+      local slot = row.slots[4]
+      local card = slot.card
+      del(all_cards, card)
+      slot.card = nil
+
       dealer:deal()
     end
   end
@@ -50,4 +59,5 @@ function _draw()
   for card in all(all_cards) do
     card:draw()
   end
+  rectfill(40, 10, x2(40, 6) , y2(10, 6), 3)
 end
