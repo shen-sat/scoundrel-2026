@@ -43,15 +43,42 @@ function init_card_move_states()
 
   local card_consume_frames = {
     function(target)
-      target.y = target.y - 4
+      local slot = row:card_slot(target)
+      target.y = slot.y - 2
     end,
     function(target)
-      target.y = target.y + 8
+      local slot = row:card_slot(target)
+      target.y = slot.y - 4
     end,
-    -- TODO: Add actual frames
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y - 3
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 8
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 16
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 32
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 64
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 128
+      slot.card = nil
+      del(all_cards, target)
+      -- TODO: change the state of the health/weapon
+    end,
   }
-
-  card_move_states['consume'] = create_state(card_consume_frames, 1, false, 'idle')
+  card_move_states['consume'] = create_state(card_consume_frames, 2, false, 'idle')
 
   return card_move_states 
 end
