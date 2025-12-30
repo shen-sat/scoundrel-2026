@@ -40,5 +40,18 @@ function init_card_move_states()
   }
   card_move_states['deal'] = create_state(card_deal_frames, 1, true)
 
+
+  local card_consume_frames = {
+    function(target)
+      target.y = target.y - 4
+    end,
+    function(target)
+      target.y = target.y + 8
+    end,
+    -- TODO: Add actual frames
+  }
+
+  card_move_states['consume'] = create_state(card_consume_frames, 1, false, 'idle')
+
   return card_move_states 
 end

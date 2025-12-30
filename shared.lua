@@ -1,4 +1,4 @@
-function execute_state(state, loop, target)
+function execute_state(state, loop, target, set_state_fn)
   local current_frame_index = ceil(state.counter / state.frame_duration)
   state.frames[current_frame_index](target)
 
@@ -7,7 +7,7 @@ function execute_state(state, loop, target)
     if loop then
       state.counter = 1
     else
-      set_entity_anim_state(target, state.next_state_name)
+      set_state_fn(target, state.next_state_name)
     end
   else
     state.counter = state.counter + 1
@@ -38,8 +38,8 @@ function create_state(frames, frame_duration, loop, next_state_name)
     frame_duration = frame_duration,
     frames = frames,
     loop = loop,
-    call = function(self, target)
-      execute_state(self, self.loop, target)
+    call = function(self, target, set_state_fn)
+      execute_state(self, self.loop, target, set_state_fn)
     end
   }
 
@@ -59,11 +59,11 @@ function init_entity(x, y, anim_states, initial_anim_state_name, move_states, in
     move_state = move_states[initial_move_state_name], -- Set the initial move state
 
     draw_anim_state = function(self)
-      self.anim_state:call(self)
+      self.anim_state:call(self, set_entity_anim_state)
     end,
 
     update_move_state = function(self)
-      self.move_state:call(self)
+      self.move_state:call(self, set_entity_move_state)
     end,
 
     anim_states = anim_states,

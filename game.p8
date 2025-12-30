@@ -28,12 +28,19 @@ function _update()
   for card in all(all_cards) do
     card:update()
   end
+
+  if btnp(1) then
+    local row_cards = row:cards()
+    if #row_cards > 0 then
+      local last_card = row_cards[#row_cards]
+      last_card:set_move_state('consume')
+    end
+  end
+  
   dealer:update()
 
-  -- if up button pressed, deal first card
   if btnp(2) then
     dealer:deal()
-  -- if down button is pressed, set last row card to nil
   elseif btnp(3) then
     if #row.slots > 0 then
       local slot = row.slots[1]

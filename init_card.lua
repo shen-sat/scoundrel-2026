@@ -9,9 +9,9 @@ function init_card(anim_states, move_states, value)
   end
   
   card.draw = function(card)
-    card.draw_anim_state(card)
     rectfill(card.x, card.y, x2(card.x, card.width), y2(card.y, card.height), 6)
     print(card.value, card.x + 1, card.y + 1, 1)
+    card.draw_anim_state(card)
   end
 
   return card 

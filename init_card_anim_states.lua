@@ -3,7 +3,7 @@ function init_card_anim_states()
 
   local card_idle_frames = {
     function (target)
-      rectfill(target.x, target.y, target.x+8, target.y+12, 7)
+      return
     end
   }
   card_anim_states['idle'] = create_state(card_idle_frames, 10, true)
