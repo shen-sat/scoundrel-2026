@@ -17,7 +17,7 @@ function init_row()
 
       if free_slot then free_slot.card = card end
     end,
-    is_free_slots = function(self)
+    any_free_slots = function(self)
       for slot in all(self.slots) do
         if not slot.card then
           return true
@@ -32,6 +32,20 @@ function init_row()
         end
       end
       return nil
+    end,
+    cards = function(self)
+      local cards = {}
+      for slot in all(self.slots) do
+        if slot.card then
+          add(cards, slot.card)
+        end
+      end
+      return cards
+    end,
+    clear_slots = function(self)
+      for slot in all(self.slots) do
+        slot.card = nil
+      end
     end
   }
 

@@ -2,13 +2,8 @@ function init_dealer()
   local dealer = {
     card = nil,
     deal = function(self)
-      local row_cards = {}
-      for slot in all(row.slots) do
-        if slot.card then
-          add(row_cards, slot.card)
-          slot.card = nil
-        end
-      end
+      local row_cards = row:cards()
+      row:clear_slots()
       
       --loop through row cards backwards
       for i=#row_cards,1,-1 do
@@ -29,7 +24,7 @@ function init_dealer()
       end
     end,
     update = function(self)
-      if self.card and row:is_free_slots() and (#deck > 0) then
+      if self.card and row:any_free_slots() and (#deck > 0) then
         if self.card.y >= row.slots[1].y then
           self:deal_card()
         end
