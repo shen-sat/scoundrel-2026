@@ -73,12 +73,85 @@ function init_card_move_states()
     function(target)
       local slot = row:card_slot(target)
       target.y = slot.y + 128
-      slot.card = nil
-      del(all_cards, target)
+      remove_card(slot, target)
       -- TODO: change the state of the health/weapon
     end,
   }
   card_move_states['consume'] = create_state(card_consume_frames, 2, false, 'idle')
+
+  local card_attack_frames = {
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y - 2
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y - 4
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y - 3
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 14
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 16
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y + 3
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y
+      -- TODO: change state of player (health and or weapon)
+    end,
+  }
+
+  card_move_states['attack'] = create_state(
+    card_attack_frames,
+    2,           
+    false,       
+    'die'       
+  )
+
+  local card_die_frames = {
+    function(target)
+      target.y = -1000
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y
+    end,
+    function(target)
+      target.y = -1000
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y
+    end,
+    function(target)
+      target.y = -1000
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      target.y = slot.y
+    end,
+    function(target)
+      local slot = row:card_slot(target)
+      remove_card(slot, target)
+    end,
+  }
+
+  card_move_states['die'] = create_state(
+    card_die_frames,
+    3,           
+    false,       
+    'idle'  
+  )
 
   return card_move_states 
 end

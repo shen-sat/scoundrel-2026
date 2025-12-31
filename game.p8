@@ -25,6 +25,14 @@ function _init()
 end
 
 function _update()
+  -- if left button pressed, set first card in row to 'attack' movement state
+  if btnp(0) then
+    local row_cards = row:cards()
+    if #row_cards > 0 then
+      local first_card = row_cards[1]
+      first_card:set_move_state('attack')
+    end
+  end
   for card in all(all_cards) do
     card:update()
   end
