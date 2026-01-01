@@ -4,13 +4,13 @@ __lua__
 
 function _init()
   #include shared.lua
+
+  #include init_row.lua
+  row = init_row()
+
   #include init_card.lua
   #include init_card_anim_states.lua
   #include init_card_move_states.lua
-  #include init_row.lua
-  #include init_dealer.lua
-  
-  row = init_row()
   local card_anim_states = init_card_anim_states()
   local card_move_states = init_card_move_states()
 
@@ -21,10 +21,19 @@ function _init()
     add(all_cards, card)
   end
 
+  #include init_dealer.lua
   dealer = init_dealer()
+  
+  #include init_wall.lua
+  #include init_wall_anim_states.lua
+  #include init_wall_move_states.lua
+  local wall_anim_states = init_wall_anim_states()
+  local wall_move_states = init_wall_move_states()
+  wall = init_wall(wall_anim_states, wall_move_states)
 end
 
 function _update()
+  wall:update()
   -- if left button pressed, set first card in row to 'attack' movement state
   if btnp(0) then
     local row_cards = row:cards()
@@ -71,8 +80,10 @@ end
 
 function _draw()
   cls()
+  wall:draw()
   for card in all(all_cards) do
     card:draw()
   end
   rectfill(40, 10, x2(40, 6) , y2(10, 6), 3)
+  print(stat(7), 100, 100, 7)
 end

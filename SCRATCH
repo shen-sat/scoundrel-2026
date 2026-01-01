@@ -1,18 +1,15 @@
-Deck:
-- cards [List]
+Player is a wall.
+Each gem has its own update and draw functions
+The idle state refs the player wall and draws itself relative to the player
+But other states will move itself independent of player
 
-Row:
-- cards [List]
-- slots [List]
 
-Card:
-- x, y
-- value
-- animation states:
-- - idle
-- movement states
-- - idle
-- - deal
+player wall object.
+Should react to hit
+0,114 -> 127, 127
+24, 114 -> 48, 125
+52, 114 -> 76, 120
+80, 114 -> 104, 120
 
 
 
