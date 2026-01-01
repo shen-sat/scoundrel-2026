@@ -1,0 +1,1 @@
+wall_start_x, wall_start_y = 0, 114

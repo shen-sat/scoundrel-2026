@@ -94,11 +94,13 @@ function init_card_move_states()
     end,
     function(target)
       local slot = row:card_slot(target)
-      target.y = slot.y + 14
+      target.y = slot.y + 20
+      -- TODO: set ANIM of wall to hurt
     end,
     function(target)
       local slot = row:card_slot(target)
-      target.y = slot.y + 16
+      target.y = slot.y + 22
+      wall:set_move_state('hurt')
     end,
     function(target)
       local slot = row:card_slot(target)

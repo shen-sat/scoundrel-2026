@@ -1,5 +1,5 @@
 function init_wall(anim_states, move_states)
-  local wall = init_entity(0, 114, anim_states, 'idle', move_states, 'idle')
+  local wall = init_entity(wall_start_x, wall_start_y, anim_states, 'idle', move_states, 'idle')
   wall.width = 128
   wall.height = 14
 
@@ -8,13 +8,12 @@ function init_wall(anim_states, move_states)
   end
 
   wall.draw = function(self)
-    -- Draw main wall
     rectfill(self.x, self.y, self.x + self.width - 1, self.y + self.height - 1, 5) -- grey
-    -- Draw gaps (black rects)
-    rectfill(24, 114, 48, 125, 0)
-    rectfill(52, 114, 76, 120, 0)
-    rectfill(80, 114, 104, 120, 0)
-    -- Call anim state frame
+    -- gaps
+    rectfill(self.x + 24, self.y, self.x + 48, self.y + 11, 0)
+    rectfill(self.x + 52, self.y, self.x + 76, self.y + 6, 0)
+    rectfill(self.x + 80, self.y, self.x + 104, self.y + 6, 0)
+    
     self:draw_anim_state()
   end
 

@@ -3,6 +3,7 @@ version 36
 __lua__
 
 function _init()
+  #include config.lua
   #include shared.lua
 
   #include init_row.lua
