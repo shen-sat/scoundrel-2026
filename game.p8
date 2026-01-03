@@ -31,10 +31,19 @@ function _init()
   local wall_anim_states = init_wall_anim_states()
   local wall_move_states = init_wall_move_states()
   wall = init_wall(wall_anim_states, wall_move_states)
+
+  #include init_rune.lua
+  #include init_rune_anim_states.lua
+  #include init_rune_move_states.lua
+  local rune_anim_states = init_rune_anim_states()
+  local rune_move_states = init_rune_move_states()
+  health_rune = init_rune(54, 106, rune_anim_states, rune_move_states, 1)
+  health_rune.offset_y = 8
 end
 
 function _update()
   wall:update()
+  health_rune:update()
   -- if left button pressed, set first card in row to 'attack' movement state
   if btnp(0) then
     local row_cards = row:cards()
@@ -82,6 +91,7 @@ end
 function _draw()
   cls()
   wall:draw()
+  health_rune:draw()
   for card in all(all_cards) do
     card:draw()
   end
