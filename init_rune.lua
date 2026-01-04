@@ -11,10 +11,13 @@ function init_rune(x, y, anim_states, move_states, value)
 	end
   
 	rune.draw = function(rune)
-		rectfill(rune.x, rune.y, x2(rune.x, rune.width), y2(rune.y, rune.height), 6)
-		print(rune.value, rune.x + 1, rune.y + 1, 1)
 		rune.draw_anim_state(rune)
 	end
+
+  rune.draw_self = function(self)
+    rectfill(rune.x, rune.y, x2(rune.x, rune.width), y2(rune.y, rune.height), 8)
+		print(rune.value, rune.x + 1, rune.y + 1, 1)
+  end
 
 	return rune 
 end

@@ -73,11 +73,9 @@ function init_card_move_states()
     function(target)
       local slot = row:card_slot(target)
       target.y = slot.y + 128
-      remove_card(slot, target)
-      -- TODO: change the state of the health/weapon
     end,
   }
-  card_move_states['consume'] = create_state(card_consume_frames, 2, false, 'idle')
+  card_move_states['consume'] = create_state(card_consume_frames, 2, false, 'delete')
 
   local card_attack_frames = {
     function(target)
@@ -141,18 +139,26 @@ function init_card_move_states()
     function(target)
       local slot = row:card_slot(target)
       target.y = slot.y
-    end,
-    function(target)
-      local slot = row:card_slot(target)
-      remove_card(slot, target)
-    end,
+    end
   }
 
   card_move_states['die'] = create_state(
     card_die_frames,
     3,           
     false,       
-    'idle'  
+    'delete'  
+  )
+
+  local card_delete_frames = {
+    function(target)
+      target:delete_me()
+    end,
+  }
+
+  card_move_states['delete'] = create_state(
+    card_delete_frames,
+    3,           
+    true
   )
 
   return card_move_states 

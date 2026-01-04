@@ -88,7 +88,7 @@ function y2(y1, height)
   return y1 + height - 1
 end
 
-function remove_card(slot, card)
+function remove_card(slot, card)  
   slot.card = nil
   del(all_cards, card)
 end

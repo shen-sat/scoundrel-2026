@@ -39,9 +39,13 @@ function _init()
   local rune_move_states = init_rune_move_states()
   health_rune = init_rune(54, 106, rune_anim_states, rune_move_states, 1)
   health_rune.offset_y = 8
+
+  #include init_trigger_manager.lua
+  trigger_manager = init_trigger_manager()
 end
 
 function _update()
+  trigger_manager:update()
   wall:update()
   health_rune:update()
   -- if left button pressed, set first card in row to 'attack' movement state
@@ -90,11 +94,9 @@ end
 
 function _draw()
   cls()
-  wall:draw()
-  health_rune:draw()
   for card in all(all_cards) do
     card:draw()
   end
-  rectfill(40, 10, x2(40, 6) , y2(10, 6), 3)
-  print(stat(7), 100, 100, 7)
+  wall:draw()
+  health_rune:draw()
 end

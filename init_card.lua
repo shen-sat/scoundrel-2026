@@ -14,5 +14,10 @@ function init_card(anim_states, move_states, value)
     card.draw_anim_state(card)
   end
 
+  card.delete_me = function(card)
+    local slot = row:card_slot(card)
+    remove_card(slot, card)
+  end
+
   return card 
 end
