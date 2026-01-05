@@ -74,6 +74,12 @@ function init_entity(x, y, anim_states, initial_anim_state_name, move_states, in
     end,
     set_move_state = function(self, state_name)
       set_entity_move_state(self, state_name)
+    end,
+    is_anim_state = function(self, state_name)
+      return self.anim_state == self.anim_states[state_name]
+    end,
+    is_move_state = function(self, state_name)
+      return self.move_state == self.move_states[state_name]
     end
   }
 
