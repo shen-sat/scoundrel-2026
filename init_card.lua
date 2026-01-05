@@ -8,6 +8,14 @@ function init_card(anim_states, move_states, value, suit)
   card.update = function(card)
     card.update_move_state(card)
   end
+
+  card.activate = function(card)
+    if card.suit == 'hearts' or card.suit == 'diamonds' then
+      card:set_move_state('consume')
+    else
+      card:set_move_state('attack')
+    end
+  end
   
   card.draw = function(card)
     rectfill(card.x, card.y, x2(card.x, card.width), y2(card.y, card.height), 6)

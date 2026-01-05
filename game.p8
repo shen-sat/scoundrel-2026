@@ -64,7 +64,7 @@ function _update()
     local row_cards = row:cards()
     if #row_cards > 0 then
       local last_card = row_cards[#row_cards]
-      last_card:set_move_state('consume')
+      last_card:activate()
     end
   end
   

@@ -17,7 +17,7 @@ function init_trigger_manager()
           card = c
         end
       end
-      if card then
+      if card and (card.suit == 'hearts' or card.suit == 'diamonds') then
         if not health_rune:is_anim_state('absorb') then
           health_rune:set_anim_state('absorb')
         end
